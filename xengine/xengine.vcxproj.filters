@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="math">
+      <UniqueIdentifier>{32a89a11-5a98-469d-b7b5-3fcb34ed31d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="platform">
+      <UniqueIdentifier>{98aa76ef-38b5-4cd9-b738-4a69f1632c79}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="platform\windows">
+      <UniqueIdentifier>{d8d94749-b96a-47d1-a12f-3addff2847bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="event">
+      <UniqueIdentifier>{fc961d5b-a13c-4e5e-8d71-d717de89ff04}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="base">
+      <UniqueIdentifier>{72e1837b-e263-4536-b2ec-cdef4bf0a811}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="math\Matrix.h">
+      <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="math\Color.h">
+      <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="math\Vector.h">
+      <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="math\Vector2.h">
+      <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="math\Vector4.h">
+      <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\IGLView.h">
+      <Filter>platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\windows\GLViewImpl_win.h">
+      <Filter>platform\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="math\Rect.h">
+      <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="math\XEMath.h">
+      <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="event\Event.h">
+      <Filter>event</Filter>
+    </ClInclude>
+    <ClInclude Include="event\EventMouse.h">
+      <Filter>event</Filter>
+    </ClInclude>
+    <ClInclude Include="event\XEEvent.h">
+      <Filter>event</Filter>
+    </ClInclude>
+    <ClInclude Include="event\EventKeyboard.h">
+      <Filter>event</Filter>
+    </ClInclude>
+    <ClInclude Include="base\Director.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\Application.h">
+      <Filter>platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\IApplication.h">
+      <Filter>platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\windows\Appliction_win.h">
+      <Filter>platform\windows</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="platform\windows\GLViewImpl_win.cpp">
+      <Filter>platform\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="base\Director.cpp">
+      <Filter>base</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\windows\Appliction_win.cpp">
+      <Filter>platform\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="XEMathStatic.cpp">
+      <Filter>math</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\PlatformStatic.cpp">
+      <Filter>platform</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

@@ -22,7 +22,11 @@ int main2() {
 	}
 	glfwMakeContextCurrent(window);
 	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback2);
-	glewInit();
+	if(GLEW_OK != glewInit()){
+	     std::cerr << "Failed to create GLEW window" << std::endl;
+	     glfwTerminate();
+	     return -1;
+	}
 
 	while (!glfwWindowShouldClose(window)) {
 		processInput2(window);

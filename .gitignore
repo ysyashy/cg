@@ -1,6 +1,9 @@
 .vs
 temp
+temp/*/
 output/*.exe
 output/*.iobj
 output/*.ipdb
 output/*.pdb
+output/*.ilk
+xengine.lib
