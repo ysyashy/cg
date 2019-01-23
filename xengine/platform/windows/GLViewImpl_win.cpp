@@ -2,7 +2,8 @@
 #include <unordered_map>
 #include <GL/glew.h>
 #include "GLViewImpl_win.h"
-#include "../../event/XEEvent.h"
+#include "event/XEEvent.h"
+#include "../Application.h"
 
 namespace xe {
 
@@ -240,6 +241,14 @@ void GLViewImpl_win::onGLFWFramebuffersize(GLFWwindow *window, int w, int h) {
 }
 void GLViewImpl_win::onGLFWwindowSizeCallback(GLFWwindow *window, int w, int h) {
 
+}
+
+void GLViewImpl_win::onGLFWWindowIconifyCallback(GLFWwindow * window, int iconified) {
+	if (iconified == GL_TRUE) {
+		Application::getInstance()->applicationDidEnterBackground();
+	} else {
+		Application::getInstance()->applicationWillEnterForeground();
+	}
 }
 
 void GLViewImpl_win::end() {

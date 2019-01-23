@@ -24,6 +24,9 @@ struct Matrix {
 		m[2][0] = v3.X; m[2][1] = v3.Y;  m[2][2] = v3.Z;  m[2][3] = v3.Z;
 		m[3][0] = v4.X; m[3][1] = v4.Y;  m[3][2] = v4.Z;  m[3][3] = v4.Z;
 	}
+
+	const static Matrix identify;
+	const static Matrix zero;
 };
 
 }

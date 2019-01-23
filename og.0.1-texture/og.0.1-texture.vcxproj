@@ -11,47 +11,24 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="base\Director.h" />
-    <ClInclude Include="event\Event.h" />
-    <ClInclude Include="event\EventKeyboard.h" />
-    <ClInclude Include="event\EventMouse.h" />
-    <ClInclude Include="event\XEEvent.h" />
-    <ClInclude Include="math\Color.h" />
-    <ClInclude Include="math\Matrix.h" />
-    <ClInclude Include="math\Rect.h" />
-    <ClInclude Include="math\Vector.h" />
-    <ClInclude Include="math\Vector2.h" />
-    <ClInclude Include="math\Vector4.h" />
-    <ClInclude Include="math\XEMath.h" />
-    <ClInclude Include="platform\Application.h" />
-    <ClInclude Include="platform\IApplication.h" />
-    <ClInclude Include="platform\IGLView.h" />
-    <ClInclude Include="platform\windows\Appliction_win.h" />
-    <ClInclude Include="platform\windows\GLViewImpl_win.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="base\Director.cpp" />
-    <ClCompile Include="platform\PlatformStatic.cpp" />
-    <ClCompile Include="platform\windows\Appliction_win.cpp" />
-    <ClCompile Include="platform\windows\GLViewImpl_win.cpp" />
-    <ClCompile Include="XEMathStatic.cpp" />
+    <ClCompile Include="og_texture.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{38cc01f7-2eb1-4a38-bee7-236a65b2fd88}</ProjectGuid>
+    <ProjectGuid>{3121a457-14e3-4eeb-b1b9-d90fe091358a}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>xengine</RootNamespace>
+    <RootNamespace>og_0_1_texture</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -71,14 +48,14 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SolutionDir)ogl\include\;$(ProjectDir);$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)ogl\include\;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)output\</OutDir>
     <IntDir>$(SolutionDir)temp\</IntDir>
     <LibraryPath>$(SolutionDir)ogl\libs\debug\;$(SolutionDir)ogl\libs\common\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(SolutionDir)ogl\include\;$(ProjectDir);$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)ogl\include\;$(IncludePath)</IncludePath>
     <ReferencePath>$(ReferencePath)</ReferencePath>
     <OutDir>$(SolutionDir)output\</OutDir>
     <IntDir>$(SolutionDir)temp\</IntDir>
@@ -90,7 +67,6 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;STB_IMAGE_IMPLEMENTATION;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)xengine</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -107,7 +83,6 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;STB_IMAGE_IMPLEMENTATION;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)xengine</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>

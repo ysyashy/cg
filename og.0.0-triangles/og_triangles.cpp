@@ -28,15 +28,22 @@ int main() {
 
 	const char *vertexShaderSource = "#version 330 core\n"
 		"layout (location = 0) in vec3 aPos;\n"
+		"layout (location = 1) in vec3 aColor;\n"
+		"out vec3 ourColor;\n"
 		"void main()\n"
 		"{\n"
-		"   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
+		"   gl_Position = vec4(aPos, 1.0);\n"
+		"	ourColor = aColor;"
 		"}\0";
 	const char *fragmentShaderSource = "#version 330 core\n"
 		"out vec4 FragColor;\n"
+		"in vec3 ourColor;"
+		// "uniform vec4 ourColor;\n"
 		"void main()\n"
 		"{\n"
-		"   FragColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);\n"
+		//"   FragColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);\n"
+		// "	FragColor = vec4(1.0, 0, 0, 1.0);\n"
+		"	FragColor = vec4(ourColor, 1.0);"
 		"}\n\0";
 	int compileStatus;
 	char infoLog[512];
@@ -71,15 +78,22 @@ int main() {
 	glDeleteShader(vertexShader);
 	glDeleteShader(fragmentShader);
 
-	float vertices[] = {
+	/*float vertices[] = {
 		0.5f, 0.5f, 0.0f,
 		0.5f, -0.5f, 0.0f,
 		-0.5f, -0.5f, 0.0f,
 		-0.5f, 0.5f, 0.0f
+	};*/
+	float vertices[] = {
+		// 位置              // 颜色
+		 0.5f,  0.5f, 0.0f, 1.0f, 0.0f, 0.0f,   // 右下
+		 0.5f, -0.5f, 0.0f, 0.5f, 1.0f, 0.0f,   // 左下
+		-0.5f, -0.5f, 0.0f, 0.0f, 0.0f, 1.0f,    // 顶部
+ 		-0.5f,  0.5f, 0.0f, 1.0f, 1.0f, 0.0f
 	};
 	unsigned int indices[] = {
-		0, 1, 3,
-		1, 2, 3
+		1, 2, 3,
+		0, 1, 3
 	};
 	unsigned int vbo, vao, ebo;
 	glGenVertexArrays(1, &vao);
@@ -93,20 +107,30 @@ int main() {
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)NULL);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)NULL);
 	glEnableVertexAttribArray(0);
+	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3*sizeof(float)));
+	glEnableVertexAttribArray(1);
 
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);
 
 	while (!glfwWindowShouldClose(window)) {
-		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+		glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
-		glUseProgram(shaderProgram);
-		glBindVertexArray(vao);
-		// glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-		glDrawElements(GL_LINE_STRIP, 6, GL_UNSIGNED_INT, 0);
 
+		glUseProgram(shaderProgram);
+
+		//double timeValue = glfwGetTime();
+		//double greenValue = sin(timeValue) / 2.0 + 0.5;
+		//int vertexColorLocation = glGetUniformLocation(shaderProgram, "ourColor");
+		//glUniform4f(vertexColorLocation, 0.0f, greenValue, 0.0f, 1.0f);
+
+		glBindVertexArray(vao);
+		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+		// glDrawArrays(GL_TRIANGLES, 0, 3);
+		
+		
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 	}

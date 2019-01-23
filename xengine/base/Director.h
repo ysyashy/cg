@@ -1,7 +1,9 @@
 #ifndef __XE_DIRECTOR_H__
 #define __XE_DIRECTOR_H__
 
+#include <stack>
 #include "platform/IGLView.h"
+#include "math/Matrix.h"
 
 namespace xe {
 
@@ -28,6 +30,13 @@ private:
 	virtual ~Director();
 private:
 	IGLView *glview;
+private:
+	std::stack<Matrix> modelViewMatrixStack;
+	std::stack<Matrix> projectionMatrix;
+	std::stack<Matrix> textureMatrixStack;
+public:
+	void pushMatrix(MATRIX_STACK_TYPE type);
+	void popMatrix(MATRIX_STACK_TYPE type);
 };
 
 }

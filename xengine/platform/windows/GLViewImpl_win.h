@@ -31,6 +31,7 @@ private:
 	void onGLFWKeyCallback(GLFWwindow *window, int key, int scancode, int action, int mods);
 	void onGLFWFramebuffersize(GLFWwindow *window, int w, int h);
 	void onGLFWwindowSizeCallback(GLFWwindow *window, int w, int h);
+	void onGLFWWindowIconifyCallback(GLFWwindow *window, int iconified);
 private:
 	GLFWwindow *glwindow = nullptr;
 	GLFWmonitor *glmonitor = nullptr;
@@ -60,6 +61,9 @@ public:
 	}
 	static void onGLFWwindowSizeCallback(GLFWwindow *window, int w, int h) {
 		glView->onGLFWwindowSizeCallback(window, w, h);
+	}
+	static void onGLFWWindowIconifyCallback(GLFWwindow *window, int iconified) {
+		glView->onGLFWWindowIconifyCallback(window, iconified);
 	}
 };
 

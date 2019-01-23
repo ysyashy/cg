@@ -25,7 +25,9 @@ void Director::destroyInstance() {
 
 void Director::end() {}
 
-void Director::mainLoop() {}
+void Director::mainLoop() {
+	tick();
+}
 
 IGLView * Director::getGLView() {
 	return glview;
@@ -43,10 +45,35 @@ bool Director::init() {
 
 void Director::tick() {
 
+	if (glview) {
+		glview->pullEvents();
+	}
+
+	render->clear();
+	FrameBuffer::clearAllFBOS();
+
+	pushMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW);
+
+	render->clearDrawStats();
+	if (glview) {
+		glview->renderScene(scene, render);
+	}
+	updateFrameRate();
+
+	render->render();
+
+	popMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW);
+	if (glview != nullptr) {
+		glview->swapBuffers();
+	}
 }
 
-
-
 Director::~Director() {}
+
+void Director::pushMatrix(MATRIX_STACK_TYPE type) {
+}
+
+void Director::popMatrix(MATRIX_STACK_TYPE type) {
+}
 
 }

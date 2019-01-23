@@ -16,8 +16,8 @@ public:
 	int run();
 public:
 	virtual bool applicationDidFinishLaunching() = 0;
-	virtual void applicationDidEnterBackground() override;
-	virtual void applicationWillEnterForeground() override;
+	virtual void applicationDidEnterBackground() = 0;
+	virtual void applicationWillEnterForeground() = 0;
 private:
 	HINSTANCE instance;
 	HACCEL accelTable;
