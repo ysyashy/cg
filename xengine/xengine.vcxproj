@@ -33,6 +33,8 @@
     <ClInclude Include="platform\windows\Appliction_win.h" />
     <ClInclude Include="platform\windows\GLViewImpl_win.h" />
     <ClInclude Include="renderer\FrameBuffer.h" />
+    <ClInclude Include="renderer\GLProgram.h" />
+    <ClInclude Include="renderer\RenderCommand.h" />
     <ClInclude Include="renderer\Renderer.h" />
   </ItemGroup>
   <ItemGroup>
@@ -44,6 +46,8 @@
     <ClCompile Include="platform\windows\Appliction_win.cpp" />
     <ClCompile Include="platform\windows\GLViewImpl_win.cpp" />
     <ClCompile Include="renderer\FrameBuffer.cpp" />
+    <ClCompile Include="renderer\GLProgram.cpp" />
+    <ClCompile Include="renderer\RenderCommand.cpp" />
     <ClCompile Include="renderer\Renderer.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

@@ -90,6 +90,12 @@
     <ClInclude Include="renderer\FrameBuffer.h">
       <Filter>renderer</Filter>
     </ClInclude>
+    <ClInclude Include="renderer\GLProgram.h">
+      <Filter>renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="renderer\RenderCommand.h">
+      <Filter>renderer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="platform\windows\GLViewImpl_win.cpp">
@@ -117,6 +123,12 @@
       <Filter>renderer</Filter>
     </ClCompile>
     <ClCompile Include="renderer\FrameBuffer.cpp">
+      <Filter>renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\GLProgram.cpp">
+      <Filter>renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\RenderCommand.cpp">
       <Filter>renderer</Filter>
     </ClCompile>
   </ItemGroup>

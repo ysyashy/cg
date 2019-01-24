@@ -1,6 +1,7 @@
 #include <iostream>
 
-
+#include "platform/IGLView.h"
+#include "renderer/Renderer.h"
 #include "Director.h"
 
 namespace xe {
@@ -49,7 +50,7 @@ void Director::tick() {
 		glview->pullEvents();
 	}
 
-	render->clear();
+	renderer->clear();
 	FrameBuffer::clearAllFBOS();
 
 	pushMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW);

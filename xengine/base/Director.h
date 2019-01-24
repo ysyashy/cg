@@ -2,10 +2,13 @@
 #define __XE_DIRECTOR_H__
 
 #include <stack>
-#include "platform/IGLView.h"
 #include "math/Matrix.h"
 
 namespace xe {
+
+class IGLView;
+class Renderer;
+class FrameBuffer;
 
 enum class MATRIX_STACK_TYPE {
 	MATRIX_STACK_MODELVIEW,
@@ -30,6 +33,7 @@ private:
 	virtual ~Director();
 private:
 	IGLView *glview;
+	Renderer *renderer;
 private:
 	std::stack<Matrix> modelViewMatrixStack;
 	std::stack<Matrix> projectionMatrix;
