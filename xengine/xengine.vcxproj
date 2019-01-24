@@ -12,29 +12,39 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="base\Director.h" />
+    <ClInclude Include="base\Node.h" />
     <ClInclude Include="event\Event.h" />
     <ClInclude Include="event\EventKeyboard.h" />
     <ClInclude Include="event\EventMouse.h" />
     <ClInclude Include="event\XEEvent.h" />
     <ClInclude Include="math\Color.h" />
+    <ClInclude Include="math\FRotator.h" />
     <ClInclude Include="math\Matrix.h" />
+    <ClInclude Include="math\FQuat.h" />
     <ClInclude Include="math\Rect.h" />
-    <ClInclude Include="math\Vector.h" />
+    <ClInclude Include="math\Vector3.h" />
     <ClInclude Include="math\Vector2.h" />
     <ClInclude Include="math\Vector4.h" />
     <ClInclude Include="math\XEMath.h" />
+    <ClInclude Include="math\XEMathUtility.h" />
     <ClInclude Include="platform\Application.h" />
     <ClInclude Include="platform\IApplication.h" />
     <ClInclude Include="platform\IGLView.h" />
     <ClInclude Include="platform\windows\Appliction_win.h" />
     <ClInclude Include="platform\windows\GLViewImpl_win.h" />
+    <ClInclude Include="renderer\FrameBuffer.h" />
+    <ClInclude Include="renderer\Renderer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="base\Director.cpp" />
+    <ClCompile Include="base\inlineNode.cpp" />
+    <ClCompile Include="base\Node.cpp" />
+    <ClCompile Include="math\XEMath.cpp" />
     <ClCompile Include="platform\PlatformStatic.cpp" />
     <ClCompile Include="platform\windows\Appliction_win.cpp" />
     <ClCompile Include="platform\windows\GLViewImpl_win.cpp" />
-    <ClCompile Include="XEMathStatic.cpp" />
+    <ClCompile Include="renderer\FrameBuffer.cpp" />
+    <ClCompile Include="renderer\Renderer.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
