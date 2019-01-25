@@ -1,7 +1,9 @@
-#ifndef __XE_RenderCommand_H__
-#define __XE_RenderCommand_H__
+#ifndef __XE_IRenderCommand_H__
+#define __XE_IRenderCommand_H__
 
 namespace xe {
+
+class Matrix;
 
 class IRenderCommand {
 public:
@@ -17,10 +19,13 @@ public:
 		CUSTOM_COMMAND
 	};
 public:
-	virtual Type getCommandType() = 0;
+	Type getCommandType() const;
+	void init(const Matrix &modelView);
 protected:
 	IRenderCommand();
 	virtual ~IRenderCommand();
+protected:
+	Type commandType;
 };
 
 }

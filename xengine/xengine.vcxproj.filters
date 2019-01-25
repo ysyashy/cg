@@ -93,9 +93,31 @@
     <ClInclude Include="renderer\GLProgram.h">
       <Filter>renderer</Filter>
     </ClInclude>
-    <ClInclude Include="renderer\RenderCommand.h">
+    <ClInclude Include="base\Sprite.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\NodeDraw.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="renderer\CommandPrimitive.h">
       <Filter>renderer</Filter>
     </ClInclude>
+    <ClInclude Include="renderer\CommandTriangle.h">
+      <Filter>renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="renderer\CommandMesh.h">
+      <Filter>renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="renderer\IRenderCommand.h">
+      <Filter>renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="renderer\Texture2D.h">
+      <Filter>renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="renderer\TexturePool.h">
+      <Filter>renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="xeTypes.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="platform\windows\GLViewImpl_win.cpp">
@@ -128,8 +150,30 @@
     <ClCompile Include="renderer\GLProgram.cpp">
       <Filter>renderer</Filter>
     </ClCompile>
-    <ClCompile Include="renderer\RenderCommand.cpp">
+    <ClCompile Include="base\Sprite.cpp">
+      <Filter>base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\NodeDraw.cpp">
+      <Filter>base</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\CommandPrimitive.cpp">
       <Filter>renderer</Filter>
     </ClCompile>
+    <ClCompile Include="renderer\CommandTriangle.cpp">
+      <Filter>renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\CommandMesh.cpp">
+      <Filter>renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\IRenderCommand.cpp">
+      <Filter>renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\Texture2D.cpp">
+      <Filter>renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\TexturePool.cpp">
+      <Filter>renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="xeTypes.cpp" />
   </ItemGroup>
 </Project>

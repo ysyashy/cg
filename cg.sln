@@ -20,6 +20,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "og.0.1-texture", "og.0.1-te
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "og.0.2-3d.coordinate", "og.0.2-3d.coordinate\og.0.2-3d.coordinate.vcxproj", "{F3663AEA-3D1B-4019-827A-A41E335DFC47}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "og.0.3.color", "og.0.3.color\og.0.3.color.vcxproj", "{435B6683-B9C6-45E9-9E8A-CD50C5B46BA5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -72,6 +74,12 @@ Global
 		{F3663AEA-3D1B-4019-827A-A41E335DFC47}.Release|x64.ActiveCfg = Release|Win32
 		{F3663AEA-3D1B-4019-827A-A41E335DFC47}.Release|x86.ActiveCfg = Release|Win32
 		{F3663AEA-3D1B-4019-827A-A41E335DFC47}.Release|x86.Build.0 = Release|Win32
+		{435B6683-B9C6-45E9-9E8A-CD50C5B46BA5}.Debug|x64.ActiveCfg = Debug|Win32
+		{435B6683-B9C6-45E9-9E8A-CD50C5B46BA5}.Debug|x86.ActiveCfg = Debug|Win32
+		{435B6683-B9C6-45E9-9E8A-CD50C5B46BA5}.Debug|x86.Build.0 = Debug|Win32
+		{435B6683-B9C6-45E9-9E8A-CD50C5B46BA5}.Release|x64.ActiveCfg = Release|Win32
+		{435B6683-B9C6-45E9-9E8A-CD50C5B46BA5}.Release|x86.ActiveCfg = Release|Win32
+		{435B6683-B9C6-45E9-9E8A-CD50C5B46BA5}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
