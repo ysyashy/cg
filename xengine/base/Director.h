@@ -7,8 +7,7 @@
 namespace xe {
 
 class IGLView;
-class Renderer;
-class FrameBuffer;
+class Scene;
 
 enum class MATRIX_STACK_TYPE {
 	MATRIX_STACK_MODELVIEW,
@@ -21,10 +20,13 @@ public:
 	static Director *getInstance();
 	static void destroyInstance();
 
+	Vector2 getWinSize() const;
 	void end();
 	void mainLoop();
 	IGLView *getGLView();
 	void setGLView(IGLView *view);
+	Scene *getScene();
+	void setScene(Scene *scene);
 	bool init();
 	void tick();
 private:
@@ -33,14 +35,7 @@ private:
 	virtual ~Director();
 private:
 	IGLView *glview;
-	Renderer *renderer;
-private:
-	std::stack<Matrix> modelViewMatrixStack;
-	std::stack<Matrix> projectionMatrix;
-	std::stack<Matrix> textureMatrixStack;
-public:
-	void pushMatrix(MATRIX_STACK_TYPE type);
-	void popMatrix(MATRIX_STACK_TYPE type);
+	Scene *currScene;
 };
 
 }

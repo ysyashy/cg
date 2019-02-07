@@ -1,5 +1,4 @@
-#ifndef __XE_FROTATOR_H__
-#define __XE_FROTATOR_H__
+#pragma once
 
 #include "Vector3.h"
 
@@ -30,5 +29,4 @@ struct FRotator {
 
 }
 
-#endif // !__XE_FROTATOR_H__
 

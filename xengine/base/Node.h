@@ -11,7 +11,7 @@ class Renderer;
 
 class Node {
 public:
-	const std::string &getName() const;
+	const std::string &getName() const { return name; }
 	void setName(const std::string &name);
 
 public:
@@ -31,20 +31,19 @@ public:
 	Node *getParent() const;
 	void attachChild(Node *node);
 	void detachChild(Node *node);
+	const std::vector<Node*> &getChildren() const;
+
+	Matrix getMatrix() const;
 
 public:
-	// aboud render
-	virtual void draw() final;
-	virtual void draw(Renderer *renderer, const Matrix &mat, uint32_t flags);
-
-	virtual void visit() final;
-	virtual void visit(Renderer *renderer, const Matrix &parentMat, uint32_t flags);
+	void visit(Renderer *renderer, const Matrix &mat);
+	virtual void draw(Renderer *renerer, const Matrix &mat);
 protected:
 	std::string name;
 	Vector3 position;
 	Vector3 scale;
 
-	FQuat rotation;
+	FQuat rotation = FQuat::identify;
 
 	Node *parent;
 	std::vector<Node*> children;

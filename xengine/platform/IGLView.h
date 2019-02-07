@@ -1,6 +1,4 @@
-#ifndef __IGLView_H__
-#define __IGLView_H__
-
+#pragma once
 #include <cinttypes>
 #include <string>
 #include "math/Vector2.h"
@@ -59,4 +57,3 @@ inline std::string IGLView::getViewName() const {
 }
 
 }
-#endif // !__IGLView_H__

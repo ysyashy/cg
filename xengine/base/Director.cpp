@@ -1,8 +1,8 @@
 #include <iostream>
 
 #include "platform/IGLView.h"
-#include "renderer/Renderer.h"
 #include "Director.h"
+#include "base/Scene.h"
 
 namespace xe {
 
@@ -24,6 +24,14 @@ void Director::destroyInstance() {
 	}
 }
 
+Vector2 Director::getWinSize() const {
+	if (nullptr != glview) {
+		return glview->getFrameSize();
+	} else {
+		return Vector2(0.0f, 0.0f);
+	}
+}
+
 void Director::end() {}
 
 void Director::mainLoop() {
@@ -38,6 +46,14 @@ void Director::setGLView(IGLView * view) {
 	glview = view;
 }
 
+Scene * Director::getScene() {
+	return currScene;
+}
+
+void Director::setScene(Scene * scene) {
+	currScene = scene;
+}
+
 Director::Director() : glview(nullptr) {}
 
 bool Director::init() {
@@ -50,31 +66,15 @@ void Director::tick() {
 		glview->pullEvents();
 	}
 
-	renderer->clear();
-	FrameBuffer::clearAllFBOS();
-
-	pushMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW);
-
-	render->clearDrawStats();
-	if (glview) {
-		glview->renderScene(scene, render);
+	if (nullptr != currScene) {
+		currScene->render();
 	}
-	updateFrameRate();
 
-	render->render();
-
-	popMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW);
 	if (glview != nullptr) {
 		glview->swapBuffers();
 	}
 }
 
 Director::~Director() {}
-
-void Director::pushMatrix(MATRIX_STACK_TYPE type) {
-}
-
-void Director::popMatrix(MATRIX_STACK_TYPE type) {
-}
 
 }

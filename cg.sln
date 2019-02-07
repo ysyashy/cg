@@ -26,6 +26,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "og.0.4.material", "og.0.4.m
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "og.0.5.Framebuffer", "og.0.5.Framebuffer\og.0.5.Framebuffer.vcxproj", "{E1E91419-6935-42EA-A7FB-B528CDBC9761}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "og.0.0.0-coordinate", "og.0.0.0-coordinate\og.0.0.0-coordinate.vcxproj", "{CF748F9B-CD75-498D-8569-06C81A28FCB6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -96,6 +98,12 @@ Global
 		{E1E91419-6935-42EA-A7FB-B528CDBC9761}.Release|x64.ActiveCfg = Release|Win32
 		{E1E91419-6935-42EA-A7FB-B528CDBC9761}.Release|x86.ActiveCfg = Release|Win32
 		{E1E91419-6935-42EA-A7FB-B528CDBC9761}.Release|x86.Build.0 = Release|Win32
+		{CF748F9B-CD75-498D-8569-06C81A28FCB6}.Debug|x64.ActiveCfg = Debug|Win32
+		{CF748F9B-CD75-498D-8569-06C81A28FCB6}.Debug|x86.ActiveCfg = Debug|Win32
+		{CF748F9B-CD75-498D-8569-06C81A28FCB6}.Debug|x86.Build.0 = Debug|Win32
+		{CF748F9B-CD75-498D-8569-06C81A28FCB6}.Release|x64.ActiveCfg = Release|Win32
+		{CF748F9B-CD75-498D-8569-06C81A28FCB6}.Release|x86.ActiveCfg = Release|Win32
+		{CF748F9B-CD75-498D-8569-06C81A28FCB6}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

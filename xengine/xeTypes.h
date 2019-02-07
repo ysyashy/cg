@@ -2,6 +2,7 @@
 
 #include "math/XEMath.h"
 #include <GL/glew.h>
+#include <cinttypes>
 
 namespace xe {
 
@@ -9,6 +10,13 @@ struct Vert_Color_Tex {
 	Vector3 vertice;
 	Color color;
 	Vector2 texCoord;
+};
+
+struct VerticeList {
+	Vert_Color_Tex *vertices;
+	uint16_t *indices;
+	int vertCount;
+	int indexCount;
 };
 
 struct BlendFunc {

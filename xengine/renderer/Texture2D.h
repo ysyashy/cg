@@ -10,13 +10,14 @@ public:
 	Texture2D(const std::string &filename);
 	virtual ~Texture2D();
 
-	GLuint getTextureId() const;
-	std::string getFileName() const;
-	int getWidth() const;
-	int getHeight() const;
+	GLuint getTextureId() const { return textureId; }
+	std::string getFileName() const { return fileName; }
+	int getWidth() const { return w; }
+	int getHeight() const { return h; }
+private:
+	Texture2D() {}
 private:
 	void loadPicture();
-	Texture2D();
 private:
 	int w, h, nrComponents;
 	std::string fileName;

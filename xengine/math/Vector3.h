@@ -1,5 +1,4 @@
-#ifndef __XE_MATH_VECTOR_H__
-#define __XE_MATH_VECTOR_H__
+#pragma once
 
 namespace xe {
 
@@ -16,15 +15,15 @@ struct Vector3 {
 		this->X = o.X;
 		this->Y = o.Y;
 		this->Z = o.Z;
+		return *this;
 	}
 
 	bool operator==(const Vector3 &o) {
 		return this->X == o.X && this->Y == o.Y && this->Z == o.Z;
 	}
 
+	const static Vector3 zero;
 };
 
 }
-
-#endif // !__XE_MATH_VECTOR_H__
 

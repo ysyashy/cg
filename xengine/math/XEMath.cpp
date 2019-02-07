@@ -2,13 +2,31 @@
 #include "XEMathUtility.h"
 #include "Rect.h"
 #include "Matrix.h"
-#include "FRotator.h"
 #include "FQuat.h"
+#include "Color.h"
 
 namespace xe {
 
+// Color.h
+const Color Color::white(255, 255, 255, 255);
+const Color Color::black(0, 0, 0, 1);
+const Color Color::gray(128, 128, 128, 255);
+
+const Color Color::red(255, 0, 0, 255);
+const Color Color::orange(255, 125, 0, 255);
+const Color Color::yellow(255, 255, 0, 255);
+const Color Color::green(0, 255, 0, 255);
+const Color Color::cyan(0, 255, 255, 255);
+const Color Color::blue(0, 0, 255, 255);
+const Color Color::purple(255, 0, 255, 255);
+
+// FQuat.h
+const FQuat FQuat::identify = {0, 0, 0, 1};
+
 // Rect.h
 const Rect Rect::zero(0.0f, 0.0f, 0.0f, 0.0f);
+
+const Vector3 Vector3::zero(0.0f, 0.0f, 0.0f);
 
 // Matrix.h
 const Matrix Matrix::identify(
@@ -82,6 +100,17 @@ FRotator FQuat::Rotator() const {
 	return RotatorFromQuat;
 }
 
+FQuat::FQuat(const Vector3 & privot, const float angle) {
+	const float halfTheta = angle / 2;
+	const float sinHalfTheta = (float)sin(halfTheta);
+	const float cosHalfTheta = (float)cos(halfTheta);
+
+	X = sinHalfTheta * privot.X;
+	Y = sinHalfTheta * privot.Y;
+	Z = sinHalfTheta * privot.Z;
+	W = cosHalfTheta;
+}
+
 float FRotator::NormalizeAxis(float Angle) {
 	// returns Angle in the range[0, 360)
 	Angle = ClampAxis(Angle);
@@ -113,6 +142,44 @@ FRotator FRotator::MakeFromEuler(const Vector3 & euler) {
 
 Vector3 FRotator::Euler() const {
 	return Vector3(Roll, Pitch, Yaw);
+}
+
+Matrix Matrix::operator*(const Matrix & m) const {
+	Matrix res;
+	for (int i = 0; i < 4; i++) {
+		for (int j = 0; j < 4; j++) {
+			res.m[i][j] = 0;
+		}
+	}
+	for (int i = 0; i < 4; i++) {
+		for (int j = 0; j < 4; j++) {
+			for (int k = 0; k < 4; k++) {
+				res.m[i][j] += (*this).m[i][k] * m.m[k][j];
+			}
+		}
+	}
+	return res;
+}
+
+Matrix Matrix::translate(const Vector3 & v) const {
+	Matrix ret = *this;
+	ret.m[0][3] += v.X;
+	ret.m[1][3] += v.Y;
+	ret.m[2][3] += v.Z;
+	return ret;
+}
+
+Matrix Matrix::rotation(const Vector3 & v) const {
+	Matrix rotation = FQuat::MakeFromEuler(v).makeMatrix();
+	return rotation * (*this);
+}
+
+Matrix Matrix::scale(const Vector3 & v) const {
+	Matrix ret = *this;
+	ret.m[0][0] *= v.X;
+	ret.m[1][1] *= v.Y;
+	ret.m[2][3] *= v.Z;
+	return ret;
 }
 
 

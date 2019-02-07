@@ -1,26 +1,30 @@
-#include <GL/glew.h>
 #include "Renderer.h"
+#include "RenderCommand.h"
+#include "GLProgram.h"
 
 namespace xe {
 
-
-
-void Renderer::addCommand(IRenderCommand * command) {}
-
-void Renderer::render() {
-	// Uncomment this once everything is rendered by new renderer
-
-	cleanRenderCommand();
+Renderer::Renderer() {
+	commands.reserve(2048);
 }
 
-void Renderer::clearGL() {
-	// Enable Depth mask to make sure glClear the depth buffer correctly
-	glDepthMask(true);
-	glClearColor(clearColor.R, clearColor.G, clearColor.B, clearColor.A);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glDepthMask(false);
+void Renderer::addCommand(RenderCommand * command) {
+	commands.push_back(command);
 }
 
-void Renderer::cleanRenderCommand() {}
+void Renderer::renderer() {
+	glClearColor(0.2f, 0.2f, 0.2f, 0.4f);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
+
+	Matrix PV = Matrix::identify;
+	for (RenderCommand *cmd : commands) {
+		cmd->glProgram->setMat4("PVM", PV*cmd->modelView);
+		cmd->execute();
+	}
+}
+
+void Renderer::clear() {
+	commands.clear();
+}
 
 }
