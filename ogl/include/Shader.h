@@ -73,10 +73,13 @@ Shader::Shader(const std::string & vertexFile
 }
 GLint Shader::loadShader(const std::string & filename, GLenum shaderType)
 {
-	if (filename.empty())	return 0;
+	if (filename.empty()) { return 0; }
 	/* read from file */
 	_buff.clear();
-	if (!readFile(filename, _buff))	return 0;
+	if (!readFile(filename, _buff)) {
+		throw std::runtime_error("read file error");
+		return 0;
+	}
 	GLuint shaderId = glCreateShader(shaderType);
 	const char *str = _buff.c_str();
 	glShaderSource(shaderId, 1, &str, NULL);

@@ -65,7 +65,7 @@ FQuat FQuat::MakeFromEuler(const Vector3 & euler) {
 }
 
 Vector3 FQuat::Euler() const {
-	return Vector3(0, 0, 0);
+	return Rotator().Euler();
 }
 
 FRotator FQuat::Rotator() const {
@@ -163,9 +163,9 @@ Matrix Matrix::operator*(const Matrix & m) const {
 
 Matrix Matrix::translate(const Vector3 & v) const {
 	Matrix ret = *this;
-	ret.m[0][3] += v.X;
-	ret.m[1][3] += v.Y;
-	ret.m[2][3] += v.Z;
+	ret.m[3][0] += v.X;
+	ret.m[3][1] += v.Y;
+	ret.m[3][2] += v.Z;
 	return ret;
 }
 

@@ -23,10 +23,9 @@ bool App::applicationDidFinishLaunching() {
 	director->setScene(scene);
 	xe::Texture2D *tex1 = new xe::Texture2D("textures/awesomeface.png");
 	xe::Sprite *spr = new xe::Sprite(tex1);
-	spr->setScale(xe::Vector3(1.2f, 1.5f, 1.0f));
-	// spr->setRotation(xe::FQuat(0.71f, 0.71f, 0.71f, 0.71f));
-	spr->setEulerAngles(xe::Vector3(90.0f, 90.0f, 90.0f));
-	// spr->setPosition(xe::Vector3(0.5f, -0.4f, 0.0f));
+	spr->setScale(xe::Vector3(1.0f, 1.0f, 1.0f));
+	// spr->setEulerAngles(xe::Vector3(0.0f, 80.0f, 20.0f));
+	spr->setPosition(xe::Vector3(0.3f, -0.3f, -0.9f));
 	spr->setName("spr1");
 	scene->addChild(spr);
 	return true;
