@@ -62,6 +62,65 @@ void bezier(Vec3 *ctrlPoints, GLint nCtrlPts, GLint nBezCurvePts) {
 	}
 }
 
+GLfloat hermite_son(GLfloat p1, GLfloat p2, GLfloat d1, GLfloat d2, GLfloat u) {
+	GLfloat u2 = u * u;
+	GLfloat u3 = u2 * u;
+
+	GLfloat h0 = 2 * u3 - 3 * u2 + 1;
+	GLfloat h1 = -2 * u3 + 3 * u2;
+	GLfloat h2 = u3 - 2 * u2 + u;
+	GLfloat h3 = u3 - u2;
+	return p1 * h0 + p2 * h1 + d1 * h2 + d2 * h3;
+}
+
+void hermite(Vec3 points[], GLfloat derivative[], GLint len) {
+	const int simples = 100;
+	Vec3 p;
+
+	for (GLuint i = 0; i < len - 1; i++) {
+		glBegin(GL_POINTS);
+		GLfloat deriv1 = derivative[i];
+		GLfloat deriv2 = derivative[i + 1];
+		GLfloat dt = 1.0f / simples;
+		for (GLfloat t = 0; t < 1.0f; t += dt) {
+			p.x = hermite_son(points[i].x, points[i + 1].x, deriv1, deriv2, t);
+			p.y = hermite_son(points[i].y, points[i + 1].y, deriv1, deriv2, t);
+			// p.z = hermite_son(points[i].z, points[i + 1].z, derivative[i].z, derivative[i + 1].z, t);
+			glVertex2f(p.x * 40, p.y * 40);
+		}
+		glEnd();
+	}
+}
+
+void cardinal(Vec3 points[], GLuint len, bool isLoop) {
+	glBegin(GL_POINTS);
+	GLfloat s = 0.5f * (1 - 0);
+	int k = 0;
+	int loop = len;
+	if (!isLoop) { 
+		k = 1; 
+		loop -= 2;
+	}
+	for (; k < loop; k++) {
+		Vec3 &p0 = points[(k - 1 + len) % len];
+		Vec3 &p1 = points[(k + len) % len];
+		Vec3 &p2 = points[(k + 1 + len) % len];
+		Vec3 &p3 = points[(k + 2 + len) % len];
+		const GLfloat step = 1.0f / 50;
+		for (GLfloat u = 0; u < 1.0f; u += step) {
+			GLfloat u_2 = u * u, u_3 = u_2 * u;
+			GLfloat car_0 = -s * u_3 + 2 * s*u_2 - s * u,
+				car_1 = (2 - s)*u_3 + (s - 3)*u_2 + 1,
+				car_2 = (s - 2)*u_3 + (3 - 2 * s)*u_2 + s * u,
+				car_3 = s * u_3 - s * u_2;
+			GLfloat x = p0.x * car_0 + p1.x * car_1 + p2.x * car_2 + p3.x * car_3;
+			GLfloat y = p0.y * car_0 + p1.y * car_1 + p2.y * car_2 + p3.y * car_3;
+			glVertex2f(x * 4, y * 4);
+		}
+	}
+	glEnd();
+}
+
 void displayFunc() {
 	/**
 	 * Set example number of control points and number of
@@ -75,18 +134,36 @@ void displayFunc() {
 
 	glClear(GL_COLOR_BUFFER_BIT);
 	glColor3f(0.0, 1.0, 0.0);
-	glPointSize(10);
+	glPointSize(8);
 
-	glBegin(GL_POINTS);
+	/*glBegin(GL_POINTS);
 	for (int i = 0; i < ctrlPts; i++) {
 		glVertex2f(ctrlPoints[i].x, ctrlPoints[i].y);
 	}
-	glEnd();
+	glEnd();*/
 
-	
-	glPointSize(4);
+	Vec3 points[] = {
+		{0, 1, 0 }, {1, 0, 0}
+	};
+	GLfloat derivative[] = {1, 2};
+	glPointSize(1);
+	glColor3f(0, 0, 0);
+	glBegin(GL_LINES);
+	// y-axis
+	glVertex2f(0, -100);
+	glVertex2f(0, 100);
+	// x-axis
+	glVertex2f(-100, 0);
+	glVertex2f(100, 0);
+	glEnd();
+	glPointSize(2);
 	glColor3f(1.0, 0.0, 0.0);
-	bezier(ctrlPoints, ctrlPts, nBezCurvePts);
+	// hermite(points, derivative, 2);
+	// bezier(ctrlPoints, ctrlPts, nBezCurvePts);
+	Vec3 cardinal_points[] = {
+		{0, 0, 0 }, {3, 6, 0}, {6, 6, 0}, {10, 0, 0}
+	};
+	cardinal(cardinal_points, 4, true);
 	glFlush();
 }
 

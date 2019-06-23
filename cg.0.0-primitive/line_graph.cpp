@@ -133,7 +133,7 @@ void winReshapeFunc(GLint newWidth, GLint newHeight) {
 }
 
 
-int main(int argc, char *argv[]) {
+int main6(int argc, char *argv[]) {
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
 	glutInitWindowPosition(100, 100);
