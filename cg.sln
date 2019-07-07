@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28010.2046
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29025.244
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cg-template", "cg-template\cg-template.vcxproj", "{EF1A4B37-8FBA-4A91-8485-6AC6BD098893}"
 EndProject
@@ -115,6 +115,7 @@ Global
 		{2C8E9EE9-7D3E-4447-96DF-CBACA835BFBC}.Release|x86.ActiveCfg = Release|Win32
 		{2C8E9EE9-7D3E-4447-96DF-CBACA835BFBC}.Release|x86.Build.0 = Release|Win32
 		{FC584AFA-5BF5-4A91-B8F9-A3791362B39C}.Debug|x64.ActiveCfg = Debug|Win32
+		{FC584AFA-5BF5-4A91-B8F9-A3791362B39C}.Debug|x64.Build.0 = Debug|Win32
 		{FC584AFA-5BF5-4A91-B8F9-A3791362B39C}.Debug|x86.ActiveCfg = Debug|Win32
 		{FC584AFA-5BF5-4A91-B8F9-A3791362B39C}.Debug|x86.Build.0 = Debug|Win32
 		{FC584AFA-5BF5-4A91-B8F9-A3791362B39C}.Release|x64.ActiveCfg = Release|Win32

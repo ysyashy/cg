@@ -2,5 +2,13 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="SplineCurve.cpp" />
+    <ClCompile Include="main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="spline.hpp" />
+    <ClInclude Include="vec3.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="spline.inl" />
   </ItemGroup>
 </Project>

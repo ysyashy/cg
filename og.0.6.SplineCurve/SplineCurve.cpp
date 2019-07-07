@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include <iostream>
+#include "vec3.hpp"
 
 /* Set initial size of the display window. */
 const GLsizei winWidth = 600, winHeight = 600;
@@ -9,10 +10,6 @@ const GLsizei winWidth = 600, winHeight = 600;
 /* Set size of world-coordinate clipping window. */
 const GLfloat xwcMin = -50, xwcMax = 50;
 const GLfloat ywcMin = -50, ywcMax = 50;
-
-struct Vec3 {
-	GLfloat x, y, z;
-};
 
 void init() {
 	glClearColor(1.0, 1.0, 1.0, 0.0);
@@ -121,20 +118,106 @@ void cardinal(Vec3 points[], GLuint len, bool isLoop) {
 	glEnd();
 }
 
+//GLfloat Cox_deBoor(int k, int d, int u, GLfloat arr[]) {
+//	return 0.0f;
+//}
+
+inline GLfloat square(GLfloat x) { return x * x; }
+inline GLfloat cube(GLfloat x) { return x * x * x; }
+
+GLfloat B_0_3(GLfloat u) {
+	if (0 <= u && u < 1) {
+		return 0.5f * u * u;
+	} else if (1 <= u && u < 2) {
+		return 0.5f * u * (2 - u) + 0.5f * (u - 1) * (3 - u);
+	} else {
+		return 0.5f * square(3 - u);
+	}
+}
+
+GLfloat B_1_3(GLfloat u) {
+	if (1 <= u && u < 2) {
+		return 0.5f * square(u - 1);
+	} else if (2 <= u && u < 3) {
+		return 0.5f * (u - 1) * (3 - u) + 0.5f * (u - 2) * (4 - u);
+	} else {
+		return 0.5f * square(4 - u);
+	}
+}
+
+GLfloat B_2_3(GLfloat u) {
+	if (2 <= u && u < 3) {
+		return 0.5f * square(u - 2);
+	} else if (3 <= u && u < 4) {
+		return 0.5f * (u - 2) * (4 - u) + 0.5f * (u - 3) * (5 - u);
+	} else {
+		0.5f * square(5 - u);
+	}
+}
+GLfloat B_3_3(GLfloat u)
+{
+	if (3 <= u && u < 4) {
+		return 0.5f * square(u - 3);
+	} else if (4 <= u && u < 5) {
+		return 0.5f * (u - 3) * (5 - u) + 0.5f * (u - 4) * (6 - u);
+	} else {
+		return 0.5f * square(6 - u);
+	}
+}
+
+GLfloat PU(int k, GLfloat u)
+{
+	if (k == 0) { return B_0_3(u); }
+	else if (k == 1) { return B_1_3(u); }
+	else if (k == 2) { return B_2_3(u); }
+	else { return B_3_3(u); }
+}
+void BSpline() {
+	// k, d
+	// u_arr
+	// P(u) = p(k) * B-k,d (u)
+	Vec3 cp[] = {
+		{0, 0, 0},
+		{1, 2, 0},
+		{2, -1, 0},
+		{3, 0, 0}
+	};
+	glBegin(GL_POINTS);
+	glColor3f(1.0, 0.0, 0.0);
+	for (int i = 0; i < 4; i++) {
+		glVertex2f(cp[i].x * 10, cp[i].y * 10);
+	}
+	glColor3f(0.0, 0.0, 0.0);
+	
+	for (GLfloat u = 0; u < 4; u += 0.1f) {
+		Vec3 pu = { 0,0,0 };
+		for (int k = 0; k < 4; k++) {
+			GLfloat bkd = PU(k, u);
+			pu.x += cp[k].x * bkd;
+			pu.y += cp[k].y * bkd;
+		}
+		// draw (pu.x, pu.y)
+		glVertex2f(pu.x * 10, pu.y * 10);
+	}
+	glEnd();
+}
+
 void displayFunc() {
 	/**
 	 * Set example number of control points and number of
 	 * curve positions to be plotted along the Bezier curve.
 	 */
-	GLint nBezCurvePts = 1000;
+	/*GLint nBezCurvePts = 1000;
 	Vec3 ctrlPoints[] = {
 		{-40, -40, 0}, {-10, 40, 0},
 		{10, -40, 0}, {40, 40, 0} };
-	int ctrlPts = sizeof(ctrlPoints)/sizeof(Vec3);
+	int ctrlPts = sizeof(ctrlPoints)/sizeof(Vec3);*/
 
 	glClear(GL_COLOR_BUFFER_BIT);
-	glColor3f(0.0, 1.0, 0.0);
-	glPointSize(8);
+	glColor3f(0.0, 0.0, 0.0);
+	glPointSize(2);
+
+	BSpline();
 
 	/*glBegin(GL_POINTS);
 	for (int i = 0; i < ctrlPts; i++) {
@@ -142,28 +225,28 @@ void displayFunc() {
 	}
 	glEnd();*/
 
-	Vec3 points[] = {
-		{0, 1, 0 }, {1, 0, 0}
-	};
-	GLfloat derivative[] = {1, 2};
-	glPointSize(1);
-	glColor3f(0, 0, 0);
-	glBegin(GL_LINES);
-	// y-axis
-	glVertex2f(0, -100);
-	glVertex2f(0, 100);
-	// x-axis
-	glVertex2f(-100, 0);
-	glVertex2f(100, 0);
-	glEnd();
-	glPointSize(2);
-	glColor3f(1.0, 0.0, 0.0);
+	//Vec3 points[] = {
+	//	{0, 1, 0 }, {1, 0, 0}
+	//};
+	//GLfloat derivative[] = {1, 2};
+	//glPointSize(1);
+	//glColor3f(0, 0, 0);
+	//glBegin(GL_LINES);
+	//// y-axis
+	//glVertex2f(0, -100);
+	//glVertex2f(0, 100);
+	//// x-axis
+	//glVertex2f(-100, 0);
+	//glVertex2f(100, 0);
+	//glEnd();
+	//glPointSize(2);
+	//glColor3f(1.0, 0.0, 0.0);
 	// hermite(points, derivative, 2);
 	// bezier(ctrlPoints, ctrlPts, nBezCurvePts);
-	Vec3 cardinal_points[] = {
+	/*Vec3 cardinal_points[] = {
 		{0, 0, 0 }, {3, 6, 0}, {6, 6, 0}, {10, 0, 0}
 	};
-	cardinal(cardinal_points, 4, true);
+	cardinal(cardinal_points, 4, true);*/
 	glFlush();
 }
 
@@ -175,7 +258,7 @@ void winReshapeFunc(GLint newWidth, GLint newHeight) {
 	glClear(GL_COLOR_BUFFER_BIT);
 }
 
-int main(int argc, char *argv[]) {
+int main1(int argc, char *argv[]) {
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
 	glutInitWindowPosition(50, 50);
