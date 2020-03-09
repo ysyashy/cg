@@ -2,6 +2,7 @@
 #define VEC3_HPP
 
 #include <cmath>
+#include <iostream>
 
 struct Vec3 {
 
@@ -290,6 +291,12 @@ struct Vec3 {
 
 	/// Conversion returns the memory address of the vector. (Non const version)
 	operator float* () { return &x; }
+
+	friend std::ostream& operator<<(std::ostream& out, const Vec3& v)
+	{
+		out << ("(") << v.x << "," << v.y << "," << v.z << ")";
+		return out;
+	}
 
 };
 

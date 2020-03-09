@@ -2,12 +2,13 @@
 
 #include "vec3.hpp"
 #include "spline.hpp"
+#include "MySpline.hpp"
 
 static int g_win_number;
 
 // Control points parameters
 float _width = 5.0f;
-int _nb_control_points = 6;
+int _nb_control_points = 10;
 bool _animate = true;
 std::vector<Vec3> _control_points;
 
@@ -15,7 +16,7 @@ std::vector<Vec3> _control_points;
 int _spline_resolution = 1000;
 // Smoothness of the spline (min 2)
 int _spline_order = 4;
-Spline<Vec3, float> _spline_curve(_spline_order, /*spline::eOPEN_UNIFORM*/spline::eOPEN_UNIFORM);
+Spline<Vec3, float> _spline_curve(_spline_order, /*spline::eOPEN_UNIFORM*/spline::eUNIFORM);
 
 // =============================================================================
 
@@ -56,8 +57,8 @@ void draw_spline(const Spline<Vec3, float>& spline_curve)
 	for (int i = 0; i < _spline_resolution; ++i) {
 		Vec3 p = spline_curve.eval_f(float(i) / float(_spline_resolution - 1));
 		glVertex3fv((float*)p);
-		//if (i < (_spline_resolution - 1))
-		//	glVertex3fv((float*)p);
+		if (i < (_spline_resolution - 1))
+			glVertex3fv((float*)p);
 
 	}
 	glEnd();
@@ -97,7 +98,7 @@ void draw_ctrl_points(const std::vector<Vec3>& control_points)
 }
 
 // -----------------------------------------------------------------------------
-
+BSpline bsp(_spline_order);
 void display(void)
 {
 	glClearColor(0.8, 0.8, 0.8, 0.0);
@@ -115,28 +116,34 @@ void display(void)
 	float s = 0.2f;
 	glScalef(s, s, s);
 
+	bsp.setControlPoints(_control_points);
+	// draw
+	bsp.unitTest();
+
 	// Animate control points to go up and down
-	static float sign = -1.0f;
-	static float y = 0.2f;
-	if (_animate) {
-		sign = y < -0.8f ? 1.0f : (y > 0.4f ? -1.0f : sign);
-		y = y + 0.01f * sign;
+	//static float sign = -1.0f;
+	//static float y = 0.2f;
+	//if (_animate) {
+	//	sign = y < -0.8f ? 1.0f : (y > 0.4f ? -1.0f : sign);
+	//	y = y + 0.01f * sign;
 
-		for (int i = 1; i < (_nb_control_points / 2) - 1; ++i) {
-			Vec3 p = _control_points[i * 2];
-			_control_points[i * 2] = Vec3(p.x, y, p.z);
-		}
-	}
-	_spline_curve.set_ctrl_points(_control_points);
-	draw_spline(_spline_curve);
-	draw_ctrl_points(_control_points);
+	//	for (int i = 1; i < (_nb_control_points / 2) - 1; ++i) {
+	//		Vec3 p = _control_points[i * 2];
+	//		_control_points[i * 2] = Vec3(p.x, y, p.z);
+	//	}
+	//}
+	
+	// ....
+	/* _spline_curve.set_ctrl_points(_control_points);
+	 draw_spline(_spline_curve);
+	*/ draw_ctrl_points(_control_points);
 
-	{
+	/*{
 		static float t = 0.0f;
 		t += 0.001f;
 		t = t > 1.0f ? 0.0f : t;
 		draw_spline_speed(_spline_curve, t);
-	}
+	}*/
 
 
 	glutSwapBuffers();
@@ -148,7 +155,7 @@ void display(void)
 
 int main(int argc, char** argv)
 {
-	float h = 0.2f;
+	float h = 4;
 	float start_x = -_width * 0.5f;
 	float step = _width / float(_nb_control_points - 1);
 

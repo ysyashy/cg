@@ -11,22 +11,13 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="SplineCurve.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="MySpline.hpp" />
-    <ClInclude Include="spline.hpp" />
-    <ClInclude Include="vec3.hpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="spline.inl" />
+    <ClCompile Include="bSpline.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{fc584afa-5bf5-4a91-b8f9-a3791362b39c}</ProjectGuid>
+    <ProjectGuid>{84e84543-27b5-475a-9663-a35c2a27ba96}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>og_0_6_SplineCurve</RootNamespace>
+    <RootNamespace>og_0_7_bSpline</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
